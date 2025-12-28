@@ -7,14 +7,14 @@ namespace posts
 {
     public class Guestbook
     {
-        //lists and json-file
+        //listor och json-fil
         private string fileName = @"guestbook.json";
 
         private List<Post> posts = new List<Post>();
 
         public Guestbook()
         {
-            //get the data from the file if there is any data there to retrieve
+            //hämtar datan från filen om det finns någon data att hämta
             if(File.Exists(fileName) == true)
             {
                 string jsonString = File.ReadAllText(fileName);
@@ -22,7 +22,7 @@ namespace posts
             }
         }
 
-        //create new post and owner
+        //skapar ett nytt inlägg och en ny ägare
         public Post addPost(string p_t, string p_o)
         {
             Post obj = new Post();
@@ -35,7 +35,7 @@ namespace posts
             return obj;
         }
 
-        //remove post and owner
+        //tar bort inlägg samt ägare
         public int deletePost(int index)
         {
             posts.RemoveAt(index);
@@ -44,13 +44,13 @@ namespace posts
             return index;
         }
 
-        //get posts and owners
+        //hämtar inlägg och ägare
         public List<Post> GetPosts()
         {
             return posts;
         }
 
-        //serialize objects and save to file
+        //serialiserar object och sparar ner dem till filen
         private void Marshal()
         {
             var jsonString = JsonSerializer.Serialize(posts);
