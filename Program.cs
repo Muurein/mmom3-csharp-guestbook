@@ -14,13 +14,19 @@ namespace posts
     {
         static void Main(string[] args)
         {
+            //skapar gästbok
             Guestbook guestbook = new Guestbook();
             int i = 0;
 
+            //håller igång gästboken
             while(true)
-            {
+            {   
+                //rensar konsollen
                 Console.Clear();
+
                 Console.CursorVisible = false;
+
+                //enkel meny
                 Console.WriteLine("Gästbok\n\n");
 
                 Console.WriteLine("1. Skriv ett inlägg i gästboken");
@@ -29,12 +35,12 @@ namespace posts
 
                 i = 0;
 
+                //skriver ut varje inlägg
                 foreach(Post post in guestbook.GetPosts()) {
-                    //Console.WriteLine("[" + i++ + "]" + post.PostText);
                     Console.WriteLine($"[{ i++ }] {post.PostText} (av: {post.PostOwner})");
                 }
 
-
+                //läser av användarens input och bestämmer resultat därefter
                 int input = (int) Console.ReadKey(true).Key;
 
                 switch (input)
@@ -48,6 +54,8 @@ namespace posts
                         Console.Write("Skriv in ditt namn: "); 
                         string? postOwner = Console.ReadLine();
 
+
+                        //felmeddelande - inget fält ska kunna lämnas tomt
                         if(string.IsNullOrEmpty(postText) || string.IsNullOrEmpty(postOwner))
                         {
                             Console.WriteLine("\nDu måste både skriva ett inlägg och fylla i ditt namn. Tryck på valfri knapp för att fortsätta.");
